@@ -56,7 +56,7 @@ class MainViewModel(
     private val versionReposition: VersionRepository,
     private val windowsPlacementRepository: WindowsPlacementRepository,
     private val textRepository: TextRepository,
-    private val settingsTabsRepository : SettingsTabsRepository
+    private val settingsTabsRepository : SettingsTabsRepository,
 ) : ViewModel() {
 
     val client = TrustAllCertsHttpClient.client
@@ -369,5 +369,7 @@ class MainViewModel(
         kofiPostFetcher()
         textFetcher(textRepository.readmeUrl, "readmeOffline", _readme)
     }
+
+
 
 }

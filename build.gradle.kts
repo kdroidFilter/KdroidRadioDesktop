@@ -1,5 +1,5 @@
+
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.compose
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 plugins {
@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.kdroidFilter"
-version = "1.0.1"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -62,6 +62,10 @@ kotlin {
                 implementation(libs.jsoup)
                 implementation(libs.materialKolor)
                 implementation(libs.mpfilepicker)
+
+                //Vlc framework
+                implementation("uk.co.caprica:vlcj:4.8.2")
+
             }
         }
     }
@@ -78,6 +82,9 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "MainKt"
+        nativeDistributions{
+            appResourcesRootDir.set(project.layout.projectDirectory.dir("resources"))
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 package ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,7 +48,6 @@ import androidx.compose.ui.unit.dp
 import enums.NavigationDestination
 import moe.tlaster.precompose.navigation.Navigator
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import utils.AsyncImage
 import utils.loadImageBitmap
 import utils.openUrlInBrowser
@@ -109,7 +109,7 @@ class TopBarElements(val vm: MainViewModel, val navigator: Navigator) {
             navigator.canGoBack.collectAsState(false).value && vm.currentRoute.value != NavigationDestination.Home.route
         val isLoading = vm.isLoading.collectAsState(false).value
         val backIcon = if (!isRtl) Icons.Rounded.ArrowBack else Icons.Rounded.ArrowForward
-        val modifier = Modifier.size(24.dp)
+        val modifier = Modifier.size(48.dp)
         val contentDescription = stringResource("app_name")
         IconButton(
             modifier = if (canGoBack) PointerModifier else Modifier,
@@ -117,19 +117,19 @@ class TopBarElements(val vm: MainViewModel, val navigator: Navigator) {
             when {
                 isLoading -> {
                     CircularProgressIndicator(
-                        modifier = modifier
+                        modifier = modifier.padding(6.dp)
                     )
                 }
                 canGoBack -> {
                     Icon(
                         imageVector = backIcon,
                         contentDescription = contentDescription,
-                        modifier = modifier
+                        modifier = modifier.padding(6.dp)
                     )
                 }
                 else -> {
-                    Icon(
-                        painterResource("AppIcon.png"),
+                    Image(
+                        loadAppIcon(),
                         contentDescription = contentDescription,
                         modifier = modifier
                     )

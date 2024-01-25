@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import utils.openUrlInBrowser
+import viewmodel.MainViewModel
 import java.awt.Cursor
 import java.nio.file.Paths
 import kotlin.io.path.exists
@@ -42,7 +44,7 @@ fun loadAppIcon(): Painter {
         ?.inputStream()
         ?.buffered()
         ?.use { BitmapPainter(loadImageBitmap(it)) }
-        ?: painterResource("AppIcon.png")
+        ?: painterResource("icon.png")
 }
 
 val PointerModifier = Modifier.pointerHoverIcon(
@@ -52,6 +54,11 @@ val PointerModifier = Modifier.pointerHoverIcon(
         )
     )
 )
+
+fun IconPointerModifier(mainViewModel : MainViewModel)  = PointerModifier.graphicsLayer {
+    rotationZ =
+        if (mainViewModel.isCurrentLanguageRtl()) 180f else 0f
+}
 
 @Composable
 fun LinkText(

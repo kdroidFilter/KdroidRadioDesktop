@@ -14,7 +14,7 @@ import viewmodel.MainViewModel
 fun App(
     vm: MainViewModel,
     content: @Composable() () -> Unit,
-) {
+    ) {
     val useDarkTheme = vm.useDarkTheme.value
     val layoutDirection = if (vm.isCurrentLanguageRtl()) LayoutDirection.Rtl else LayoutDirection.Ltr
     vm.registerDarkThemeListener()

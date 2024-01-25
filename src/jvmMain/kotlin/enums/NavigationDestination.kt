@@ -2,7 +2,7 @@ package enums
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Copyright
-import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Mail
 import androidx.compose.material.icons.rounded.Settings
@@ -16,7 +16,7 @@ enum class NavigationDestination(
     val icon : ImageVector? = null
 ) {
     FirstConfig("/firstConfig", title = stringResource("first_config_title")),
-    Home("/home", canGoBack = false, icon = Icons.Rounded.Home),
+    Home("/home", canGoBack = false, icon = Icons.Rounded.Headphones),
     Contact("/contact", title = stringResource("contact_title"), icon = Icons.Rounded.Mail),
     ContactConfirmation("/contactConfirmation", title = stringResource("contact_confirmation_title")),
     Settings("/settings", title = stringResource("settings_title"), icon = Icons.Rounded.Settings),

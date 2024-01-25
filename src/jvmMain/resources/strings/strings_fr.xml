@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--MAIN UI-->
-    <string name="app_name">Compose Desktop</string>
+    <string name="app_name">Kdroid Radio</string>
     <string name="error_not_internet_connection">Erreur, vous n'êtes pas connectés à Internet.</string>
     <string name="kofi_button">Soutenez-moi sur Ko-Fi</string>
 
@@ -12,6 +12,7 @@
 
     <!-- Home Page -->
     <string name="hello">Bonjour </string>
+    <string name="error_reading_stream">Erreur lors de la lecture du flux : le contenu ne peut pas être chargé.</string>
 
     <!--About Page-->
     <string name="about_title">À propos</string>

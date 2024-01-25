@@ -7,15 +7,13 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.res.loadImageBitmap
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.example.compose.App
 import data.manager.PreferencesManager
 import data.repository.ColorRepository
+import data.repository.RadioRepository
 import data.repository.SettingsTabsRepository
 import data.repository.TextRepository
 import data.repository.ThemeModeRepository
@@ -31,11 +29,9 @@ import utils.Localization
 import utils.SnackBarDisplayer
 import utils.stringResource
 import viewmodel.MainViewModel
+import viewmodel.RadioViewModel
 import java.awt.Dimension
-import java.nio.file.Paths
 import java.util.Locale
-import kotlin.io.path.exists
-import kotlin.io.path.inputStream
 
 fun main() = application {
     val appIcon = loadAppIcon()
@@ -47,7 +43,7 @@ fun main() = application {
         windowsPlacementRepository = WindowsPlacementRepository,
         themeModeRepository = ThemeModeRepository,
         textRepository = TextRepository,
-        settingsTabsRepository = SettingsTabsRepository
+        settingsTabsRepository = SettingsTabsRepository,
     )
     Locale.setDefault(Locale(vm.getCurrentLanguage()))
     Window(
@@ -70,7 +66,7 @@ fun main() = application {
                 Surface(
                     Modifier.padding(paddingValues).padding(16.dp).fillMaxSize()
                 ) {
-                    NavGraph(vm, navigator)
+                    NavGraph(vm, navigator, RadioViewModel(vm,RadioRepository) )
                     UpdaterDialog(vm)
                 }
             }

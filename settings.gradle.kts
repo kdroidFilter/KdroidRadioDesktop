@@ -13,4 +13,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "compose-desktop"
+rootProject.name = "kdroid-radio-desktop"

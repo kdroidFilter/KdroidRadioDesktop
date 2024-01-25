@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--MAIN UI-->
-    <string name="app_name">Compose Desktop</string>
+    <string name="app_name">Kdroid Radio</string>
     <string name="error_not_internet_connection">Error, you're not connected to Internet.</string>
     <string name="kofi_button">Support me on Ko-Fi</string>
 
@@ -12,6 +12,8 @@
 
     <!-- Home Page -->
     <string name="hello">Hi </string>
+    <string name="error_reading_stream">Error while reading the stream: content cannot be loaded.</string>
+
 
     <!--About Page-->
     <string name="about_title">About</string>
@@ -87,5 +89,24 @@
     <string name="new_version_available">A new version of the app is available. Would you like to update now?</string>
     <string name="update">Update</string>
     <string name="later">Later</string>
+
+
+    <!-- Radio Stations -->
+    <string name="radio_kol_play">Kol Play</string>
+    <string name="radio_kol_barama">Kol Barama</string>
+    <string name="radio_kol_hay">Kol Hay</string>
+    <string name="radio_idish_24">Yiddish 24</string>
+    <string name="radio_jewish_radio_network">Jewish Radio Network</string>
+    <string name="radio_geoula_fm">Geoula FM</string>
+    <string name="radio_jewish_music_stream">Jewish Music Stream</string>
+    <string name="radio_toker_fm">Toker FM</string>
+    <string name="radio_chabad_org">Chabad.org Chabad Melodies</string>
+    <string name="radio_the_lakewood_scoop">The Lakewood Scoop</string>
+    <string name="radio_dance246">Dance246</string>
+
+    <!-- Radio Categories -->
+    <string name="radio_category_kol_hayi_muzik">Kol Hay Music</string>
+    <string name="radio_category_kol_simha">Kol Simha</string>
+    <string name="radio_category_makelet_shira">Shira Choir 24</string>
 
 </resources>

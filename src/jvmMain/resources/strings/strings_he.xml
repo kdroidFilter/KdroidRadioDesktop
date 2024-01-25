@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--MAIN UI-->
-    <string name="app_name">קומפוז דסקטופ</string>
+    <string name="app_name">קיידרואיד רדיו</string>
     <string name="error_not_internet_connection">שגיאה, אתם לא מחוברים לאינטרנט.</string>
     <string name="kofi_button">תמכו בי בקופי</string>
 
@@ -12,6 +12,7 @@
 
     <!-- Home Page -->
     <string name="hello">שלום </string>
+    <string name="error_reading_stream">שגיאה בעת קריאת הזרם: לא ניתן לטעון את התוכן.</string>
 
     <!--About Page-->
     <string name="about_title">עלינו</string>
@@ -87,5 +88,23 @@
     <string name="new_version_available">גרסה חדשה של האפליקציה זמינה. האם ברצונך לעדכן כעת?</string>
     <string name="update">עדכן</string>
     <string name="later">מאוחר יותר</string>
+
+    <!-- Radio Stations -->
+    <string name="radio_kol_play">קול פליי</string>
+    <string name="radio_kol_barama">קול ברמה</string>
+    <string name="radio_kol_hay">קול חי</string>
+    <string name="radio_idish_24">אידיש 24</string>
+    <string name="radio_jewish_radio_network">Jewish Radio Network</string>
+    <string name="radio_geoula_fm">גאולה FM</string>
+    <string name="radio_jewish_music_stream">JewishMusic Stream</string>
+    <string name="radio_toker_fm">טוקר FM</string>
+    <string name="radio_chabad_org">Chabad.org ניגוני חב״ד</string>
+    <string name="radio_the_lakewood_scoop">The Lakewood Scoop</string>
+    <string name="radio_dance246">Dance246</string>
+
+    <!-- Radio Categories -->
+    <string name="radio_category_kol_hayi_muzik">קול חיי מיוזיק</string>
+    <string name="radio_category_kol_simha">קול שמחה</string>
+    <string name="radio_category_makelet_shira">מקהלת שירה 24</string>
 
 </resources>
