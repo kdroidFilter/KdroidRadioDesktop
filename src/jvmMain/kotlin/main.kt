@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.example.compose.App
+import com.sun.jna.NativeLibrary
 import data.manager.PreferencesManager
 import data.repository.ColorRepository
 import data.repository.RadioRepository
@@ -26,8 +27,11 @@ import ui.components.TopBarElements
 import ui.components.loadAppIcon
 import ui.dialogs.UpdaterDialog
 import ui.dialogs.VlcInstallerDialog
+import uk.co.caprica.vlcj.binding.support.runtime.RuntimeUtil
 import utils.Localization
+import utils.OsDetector
 import utils.SnackBarDisplayer
+import utils.getRessourcePath
 import utils.isVLCInstalled
 import utils.stringResource
 import viewmodel.MainViewModel
@@ -57,6 +61,10 @@ fun main() = application {
 
     ) {
         window.minimumSize = Dimension(960,720)
+        if (OsDetector.isWindows()) NativeLibrary.addSearchPath(
+            RuntimeUtil.getLibVlcLibraryName(),
+            "${getRessourcePath(false)}/vlc"
+        )
         App(vm) {
             val snackbarHostState = remember { SnackbarHostState() }
             val navigator = rememberNavigator()

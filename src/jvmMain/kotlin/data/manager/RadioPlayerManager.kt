@@ -1,21 +1,16 @@
 package data.manager
 
-import com.sun.jna.NativeLibrary
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import uk.co.caprica.vlcj.binding.support.runtime.RuntimeUtil
 import uk.co.caprica.vlcj.player.base.MediaPlayer
 import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter
 import uk.co.caprica.vlcj.player.component.AudioPlayerComponent
-import utils.OsDetector
-import utils.getRessourcePath
 import utils.stringResource
 import viewmodel.MainViewModel
 
 class RadioPlayerManager(
     val mainViewModel: MainViewModel
 ) {
-    private val resourcesDir = getRessourcePath(false)
 
     private val audioPlayerComponent = AudioPlayerComponent()
     private var _isPlaying = MutableStateFlow(false)
@@ -25,10 +20,6 @@ class RadioPlayerManager(
     private val mediaList = mutableListOf<String>()
 
     init {
-        if (OsDetector.isWindows()) NativeLibrary.addSearchPath(
-            RuntimeUtil.getLibVlcLibraryName(),
-            "$resourcesDir/vlc"
-        )
          setupMediaPlayerEvents()
     }
 
