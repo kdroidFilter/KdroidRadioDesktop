@@ -14,7 +14,7 @@
 
     <!--First Config -->
     <string name="first_config_title">הגדרה ראשונה</string>
-    <string name="welcome_message">ברוך הבא לאפליקציה שלנו! אנחנו שמחים לראותך איתנו. תהנה מחוויית מעולה כשתגלה את כל התכונות שיש לנו להציע. בין אם זה לצורך בידור, מידע או התחברות למשתמשים אחרים, האפליקציה שלנו כאן כדי לעמוד בצרכיך. אל תהסס להתאים אישית את הפרופיל שלך וליצור איתנו קשר אם יש לך שאלות. ברוך הבא!</string>
+    <string name="welcome_message">ברוך הבא לתוכנה שלנו! אנחנו שמחים לראותך איתנו. תהנה מחוויית מעולה כשתגלה את כל התכונות שיש לנו להציע. בין אם זה לצורך בידור, מידע או התחברות למשתמשים אחרים, האפליקציה שלנו כאן כדי לעמוד בצרכיך. אל תהסס להתאים אישית את הפרופיל שלך וליצור איתנו קשר אם יש לך שאלות. ברוך הבא!</string>
     <string name="show_news_station_label">הצג תחנות של חדשות</string>
     <string name="end_configuration">אשר</string>
 
@@ -91,7 +91,7 @@
 
     <!--- Sub-Category: Language Selection -->
     <string name="select_language_label">בחר שפה</string>
-    <string name="language_change_success_message">השפה שונתה בהצלחה. אנא הפעל מחדש את התוכנהכדי ליישם את השינויים.</string>
+    <string name="language_change_success_message">השפה שונתה בהצלחה. אנא הפעל מחדש את התוכנה כדי להחיל את השינויים.</string>
 
     <!-- Updater Dialog -->
     <string name="update_available">עדכון זמין</string>
