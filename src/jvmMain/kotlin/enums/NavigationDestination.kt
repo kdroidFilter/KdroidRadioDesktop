@@ -16,7 +16,7 @@ enum class NavigationDestination(
     val icon : ImageVector? = null
 ) {
     FirstConfig("/firstConfig", title = stringResource("first_config_title")),
-    Home("/home", canGoBack = false, icon = Icons.Rounded.Headphones),
+    Home("/home", canGoBack = false, icon = Icons.Rounded.Headphones, title = stringResource("radios")),
     Contact("/contact", title = stringResource("contact_title"), icon = Icons.Rounded.Mail),
     ContactConfirmation("/contactConfirmation", title = stringResource("contact_confirmation_title")),
     Settings("/settings", title = stringResource("settings_title"), icon = Icons.Rounded.Settings),

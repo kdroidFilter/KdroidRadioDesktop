@@ -48,6 +48,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.IconPointerModifier
 import ui.components.PointerModifier
+import ui.dialogs.VlcInstallerDialog
 import viewmodel.MainViewModel
 import viewmodel.RadioViewModel
 

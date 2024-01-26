@@ -4,6 +4,6 @@ import utils.stringResource
 
 object SettingsTabsRepository {
     fun getTabs(): List<String> {
-        return listOf((stringResource("basic_settings")), (stringResource("advanced_settings")))
+        return listOf((stringResource("app_settings")), (stringResource("behavior_settings")))
     }
 }

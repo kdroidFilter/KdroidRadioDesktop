@@ -2,12 +2,20 @@
 <resources>
     <!--MAIN UI-->
     <string name="app_name">קיידרואיד רדיו</string>
+    <string name="radios">תחנות</string>
     <string name="error_not_internet_connection">שגיאה, אתם לא מחוברים לאינטרנט.</string>
     <string name="kofi_button">תמכו בי בקופי</string>
+
+    <!-- VLC Installer Dialog -->
+    <string name="vlc_not_found">VLC לא נמצא</string>
+    <string name="vlc_not_found_instruction">VLC אינו מותקן על המכשיר שלך. נא להוריד ולהתקין אותו כדי שהאפליקציה תפעל כראוי.</string>
+    <string name="download_vlc">הורדת VLC</string>
+    <string name="exit">יציאה</string>
 
     <!--First Config -->
     <string name="first_config_title">הגדרה ראשונה</string>
     <string name="welcome_message">ברוך הבא לאפליקציה שלנו! אנחנו שמחים לראותך איתנו. תהנה מחוויית מעולה כשתגלה את כל התכונות שיש לנו להציע. בין אם זה לצורך בידור, מידע או התחברות למשתמשים אחרים, האפליקציה שלנו כאן כדי לעמוד בצרכיך. אל תהסס להתאים אישית את הפרופיל שלך וליצור איתנו קשר אם יש לך שאלות. ברוך הבא לסירה!</string>
+    <string name="show_news_station_label">הצג תחנות של חדשות</string>
     <string name="end_configuration">אשר</string>
 
     <!-- Home Page -->
@@ -48,6 +56,8 @@
     <string name="settings_title">הגדרות</string>
     <string name="basic_settings">בסיסיות</string>
     <string name="advanced_settings">מתקדמיות</string>
+    <string name="app_settings">הגדרות האפליקציה</string>
+    <string name="behavior_settings">הגדרות התנהגות</string>
     <string name="reset_settings_button">אפס הגדרות</string>
     <string name="reset_success_message">הגדרות האפליקציה אופסו בהצלחה. אנא הפעל מחדש את האפליקציה כדי שכל השינויים ייכנסו לתוקף.</string>
 

@@ -101,8 +101,8 @@ fun Settings(vm: MainViewModel) {
             }
         ) { targetState ->
             when (targetState) {
-                0 -> BasicSettings(vm)
-                1 -> {}
+                1 -> BasicSettings(vm)
+                0 -> MainAppSettings(vm)
             }
         }
     }
@@ -391,6 +391,20 @@ fun FeedSwitchButton(vm: MainViewModel) {
             checked = bool.value, onCheckedChange = {
                 vm.setFeedSwitch(it)
             }, modifier = PointerModifier
+        )
+    })
+}
+
+@Composable
+fun MainAppSettings(vm: MainViewModel) {
+    AlignedRow({
+        RowLabel(stringResource("show_news_station_label"))
+    }, {
+        val showNewsStation = vm.showNewsStation.value
+        Switch(
+            checked = showNewsStation,
+            onCheckedChange = {  vm.setShowNewsStation(it) },
+            modifier = PointerModifier
         )
     })
 }

@@ -1,6 +1,7 @@
 package viewmodel
 
 import androidx.compose.runtime.mutableStateOf
+import data.manager.PreferencesManager
 import data.manager.RadioPlayerManager
 import data.model.RadioItem
 import data.model.RadioSubItem
@@ -9,9 +10,11 @@ import enums.RadioCategoryType
 import moe.tlaster.precompose.viewmodel.ViewModel
 
 class RadioViewModel(
-    private val mainViewModel: MainViewModel,
-    private val radioRepository: RadioRepository
+    mainViewModel: MainViewModel,
+    private val radioRepository: RadioRepository,
+    private val preferencesManager: PreferencesManager
 ) : ViewModel() {
+
     private val radioPlayerManager = RadioPlayerManager(mainViewModel)
 
     private var _isSelected = mutableStateOf(getRadioItems().first())
@@ -24,9 +27,11 @@ class RadioViewModel(
     private var _volume = mutableStateOf(50)
     val volume = _volume
 
-    fun getRadioItems() = radioRepository.getRadioItems()
-
-    fun isNewsItem(item: RadioItem) : Boolean = (item.categoryType == RadioCategoryType.NEWS)
+    fun getRadioItems(): List<RadioItem> {
+        return if (preferencesManager.showNewsStations()) radioRepository.getRadioItems() else {
+            radioRepository.getRadioItems().filter { it.categoryType != RadioCategoryType.NEWS }
+        }
+    }
 
     fun getSubItems() = _isSelected.value.stations
 
@@ -67,14 +72,13 @@ class RadioViewModel(
             return if (currentIndex > 0) getRadioItems()[currentIndex - 1] else getRadioItems().last()
         }
 
-    fun next(){
+    fun next() {
         setSelected(nextStation)
     }
 
-    fun previous(){
+    fun previous() {
         setSelected(previousStation)
     }
-
 
 
     val isPlaying = radioPlayerManager.isPlaying

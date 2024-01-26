@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,10 +14,13 @@ import androidx.compose.ui.unit.dp
 import enums.NavigationDestination
 import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ui.components.InfoContainer
+import ui.components.PointerModifier
 import utils.stringResource
 import viewmodel.MainViewModel
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun FirstConfig(vm: MainViewModel, navigator: Navigator) {
     Column(
@@ -30,17 +32,11 @@ fun FirstConfig(vm: MainViewModel, navigator: Navigator) {
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TextField(
-                value = vm.name.value,
-                onValueChange = { vm.setName(it) },
-                placeholder = { Text(stringResource("enter_name")) },
-                label = { Text(stringResource("name")) },
-                maxLines = 1
-            )
+            MainAppSettings(vm)
             Spacer(Modifier.height(8.dp))
             Button(
+                modifier = PointerModifier,
                 onClick = {
-                    vm.saveName()
                     vm.configDone()
                     navigator.navigate(
                         NavigationDestination.Home.route,

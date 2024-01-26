@@ -39,7 +39,7 @@ import kotlin.io.path.inputStream
 @Composable
 fun loadAppIcon(): Painter {
     return System.getProperty("app.dir")
-        ?.let { Paths.get(it, "icon-512.png") }
+        ?.let { Paths.get(it, "/icons/ic_launcher-web.png") }
         ?.takeIf { it.exists() }
         ?.inputStream()
         ?.buffered()

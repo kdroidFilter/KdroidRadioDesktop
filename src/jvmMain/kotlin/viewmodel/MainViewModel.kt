@@ -75,6 +75,13 @@ class MainViewModel(
         _name.value = name
     }
 
+    private val _showNewsStation = mutableStateOf(preferencesManager.showNewsStations())
+    val showNewsStation = _showNewsStation
+    fun setShowNewsStation(value: Boolean) {
+        preferencesManager.setShowNewsStations(value)
+        _showNewsStation.value = value
+    }
+
     fun getName(): String {
         return preferencesManager.getName()
     }

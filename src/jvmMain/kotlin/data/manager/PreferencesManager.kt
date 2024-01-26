@@ -26,6 +26,11 @@ object PreferencesManager {
         settings["name"] = name
     }
 
+    fun showNewsStations() = settings.get<Boolean>("showNewsStations") ?: true
+    fun setShowNewsStations(value: Boolean) {
+        settings["showNewsStations"] = value
+    }
+
     fun getName() = settings.get<String>("name") ?: ""
 
     //APP BAR MODE

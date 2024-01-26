@@ -2,12 +2,20 @@
 <resources>
     <!--MAIN UI-->
     <string name="app_name">Kdroid Radio</string>
+    <string name="radios">Stations</string>
     <string name="error_not_internet_connection">Error, you're not connected to Internet.</string>
     <string name="kofi_button">Support me on Ko-Fi</string>
+
+    <!-- VLC Installer Dialog -->
+    <string name="vlc_not_found">VLC not found</string>
+    <string name="vlc_not_found_instruction">VLC is not installed on your device. Please download and install it for the app to function properly.</string>
+    <string name="download_vlc">Download VLC</string>
+    <string name="exit">Exit</string>
 
     <!--First Config -->
     <string name="first_config_title">First Config</string>
     <string name="welcome_message">Welcome to our app! We are delighted to have you with us. Enjoy an exceptional experience by exploring all the features we have to offer. Whether it's for entertainment, information, or connecting with other users, our app is here to meet your needs. Feel free to customize your profile and contact us if you have any questions. Welcome aboard!</string>
+    <string name="show_news_station_label">Show news stations</string>
     <string name="end_configuration">Confirm</string>
 
     <!-- Home Page -->
@@ -49,6 +57,8 @@
     <string name="settings_title">Settings</string>
     <string name="basic_settings">Basic</string>
     <string name="advanced_settings">Advanced</string>
+    <string name="app_settings">App Settings</string>
+    <string name="behavior_settings">Behavior Settings</string>
     <string name="reset_settings_button">Reset settings</string>
     <string name="reset_success_message">The app settings have been successfully reset. Please restart the app for all changes to take effect.</string>
 

@@ -15,8 +15,7 @@ import viewmodel.MainViewModel
 class RadioPlayerManager(
     val mainViewModel: MainViewModel
 ) {
-
-    val resourcesDir = getRessourcePath(false)
+    private val resourcesDir = getRessourcePath(false)
 
     private val audioPlayerComponent = AudioPlayerComponent()
     private var _isPlaying = MutableStateFlow(false)
@@ -26,8 +25,11 @@ class RadioPlayerManager(
     private val mediaList = mutableListOf<String>()
 
     init {
-        if (OsDetector.isWindows()) NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), "$resourcesDir/vlc")
-        setupMediaPlayerEvents()
+        if (OsDetector.isWindows()) NativeLibrary.addSearchPath(
+            RuntimeUtil.getLibVlcLibraryName(),
+            "$resourcesDir/vlc"
+        )
+         setupMediaPlayerEvents()
     }
 
     fun clearMediaList() {

@@ -25,8 +25,10 @@ import ui.components.KofiButton
 import ui.components.TopBarElements
 import ui.components.loadAppIcon
 import ui.dialogs.UpdaterDialog
+import ui.dialogs.VlcInstallerDialog
 import utils.Localization
 import utils.SnackBarDisplayer
+import utils.isVLCInstalled
 import utils.stringResource
 import viewmodel.MainViewModel
 import viewmodel.RadioViewModel
@@ -35,9 +37,10 @@ import java.util.Locale
 
 fun main() = application {
     val appIcon = loadAppIcon()
+    val preferenceManager = PreferencesManager
     val vm = MainViewModel(
         localizationRepository = Localization,
-        preferencesManager = PreferencesManager,
+        preferencesManager = preferenceManager,
         colorRepository = ColorRepository,
         versionReposition = VersionRepository,
         windowsPlacementRepository = WindowsPlacementRepository,
@@ -66,7 +69,9 @@ fun main() = application {
                 Surface(
                     Modifier.padding(paddingValues).padding(16.dp).fillMaxSize()
                 ) {
-                    NavGraph(vm, navigator, RadioViewModel(vm,RadioRepository) )
+                    VlcInstallerDialog()
+                    if (!isVLCInstalled()) return@Surface
+                    NavGraph(vm, navigator, RadioViewModel(vm, RadioRepository, preferenceManager) )
                     UpdaterDialog(vm)
                 }
             }
