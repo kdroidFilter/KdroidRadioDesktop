@@ -48,7 +48,6 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.IconPointerModifier
 import ui.components.PointerModifier
-import ui.dialogs.VlcInstallerDialog
 import viewmodel.MainViewModel
 import viewmodel.RadioViewModel
 
@@ -95,118 +94,129 @@ fun Home(mainViewModel: MainViewModel, navigator: Navigator, vm: RadioViewModel)
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    modifier = Modifier.fillMaxHeight(0.8f).padding(16.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        vm.getActualRadio(),
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Box(Modifier.height(35.dp)) {
-                        if (vm.hasSubItems()) {
-                            var isExpanded by remember { mutableStateOf(false) }
-                            Box {
-                                OutlinedButton(
+                ActualRadioElement(vm)
+                Divider()
+                PlayerElement(mainViewModel, vm)
+            }
+        }
+
+    }
+}
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun ActualRadioElement(vm: RadioViewModel) {
+    Column(
+        modifier = Modifier.fillMaxHeight(0.8f).padding(16.dp),
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            vm.getActualRadio(),
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Bold
+        )
+        Box(Modifier.height(35.dp)) {
+            if (vm.hasSubItems()) {
+                var isExpanded by remember { mutableStateOf(false) }
+                Box {
+                    OutlinedButton(
+                        modifier = PointerModifier,
+                        onClick = {
+                            isExpanded = !isExpanded
+                        }) {
+                        Text(vm.isSubItemSelected.value.name)
+                    }
+                    if (isExpanded) {
+                        DropdownMenu(
+                            expanded = isExpanded,
+                            onDismissRequest = {
+                                isExpanded = false
+                            }
+                        ) {
+                            vm.getSubItems().forEach { subItem ->
+                                DropdownMenuItem(
                                     modifier = PointerModifier,
                                     onClick = {
-                                        isExpanded = !isExpanded
-                                    }) {
-                                    Text(vm.isSubItemSelected.value.name)
-                                }
-                                if (isExpanded) {
-                                    DropdownMenu(
-                                        expanded = isExpanded,
-                                        onDismissRequest = {
-                                            isExpanded = false
-                                        }
-                                    ) {
-                                        vm.getSubItems().forEach { subItem ->
-                                            DropdownMenuItem(
-                                                modifier = PointerModifier,
-                                                onClick = {
-                                                    vm.setSubItemSelected(subItem)
-                                                    isExpanded = false
-                                                },
-                                                text = {
-                                                    Text(
-                                                        subItem.name, textAlign = TextAlign.Center,
-                                                        fontWeight = if (subItem == vm.isSubItemSelected.value) FontWeight.Bold else FontWeight.Normal,
-                                                        modifier = Modifier.fillMaxWidth()
-                                                    )
-                                                }
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Image(
-                        painterResource(vm.getRadioIcon()),
-                        null,
-                        Modifier.size(300.dp).clip(shape = CircleShape)
-                    )
-                }
-                Divider()
-                Column(
-                    modifier = Modifier.fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxHeight(),
-                            horizontalArrangement = Arrangement.spacedBy(24.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(
-                                Icons.Default.SkipPrevious,
-                                "Previous",
-                                IconPointerModifier(mainViewModel).size(70.dp).clip(CircleShape).clickable {
-                                    vm.previous()
-                                }
-                            )
-                            val isPlaying = vm.isPlaying.collectAsState()
-                            Icon(
-                                (if (isPlaying.value) Icons.Default.StopCircle else Icons.Default.PlayCircle),
-                                "Play",
-                                IconPointerModifier(mainViewModel).size(100.dp).clip(CircleShape).clickable(
-                                    onClick = {
-                                        vm.togglePlayStop()
+                                        vm.setSubItemSelected(subItem)
+                                        isExpanded = false
+                                    },
+                                    text = {
+                                        Text(
+                                            subItem.name, textAlign = TextAlign.Center,
+                                            fontWeight = if (subItem == vm.isSubItemSelected.value) FontWeight.Bold else FontWeight.Normal,
+                                            modifier = Modifier.fillMaxWidth()
+                                        )
                                     }
                                 )
-                            )
-                            Icon(
-                                Icons.Default.SkipNext,
-                                "Next",
-                                IconPointerModifier(mainViewModel).size(70.dp).clip(CircleShape).clickable {
-                                    vm.next()
-                                })
-                        }
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.fillMaxHeight()
-                        ) {
-                            Slider(
-                                value = vm.volume.value.toFloat(),
-                                onValueChange = {
-                                    vm.setVolume(it.toInt())
-                                },
-                                valueRange = 0f..100f,
-                                modifier = PointerModifier.width(250.dp)
-                            )
+                            }
                         }
                     }
                 }
             }
         }
+        Image(
+            painterResource(vm.getRadioIcon()),
+            null,
+            Modifier.size(300.dp).clip(shape = CircleShape)
+        )
+    }
+}
 
+@Composable
+fun PlayerElement(mainViewModel: MainViewModel, vm: RadioViewModel) {
+    Column(
+        modifier = Modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Row(
+                modifier = Modifier.fillMaxHeight(),
+                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.SkipPrevious,
+                    "Previous",
+                    IconPointerModifier(mainViewModel).size(70.dp).clip(CircleShape).clickable {
+                        vm.previous()
+                    }
+                )
+                val isPlaying = vm.isPlaying.collectAsState()
+                Icon(
+                    (if (isPlaying.value) Icons.Default.StopCircle else Icons.Default.PlayCircle),
+                    "Play",
+                    IconPointerModifier(mainViewModel).size(100.dp).clip(CircleShape).clickable(
+                        onClick = {
+                            vm.togglePlayStop()
+                        }
+                    )
+                )
+                Icon(
+                    Icons.Default.SkipNext,
+                    "Next",
+                    IconPointerModifier(mainViewModel).size(70.dp).clip(CircleShape).clickable {
+                        vm.next()
+                    })
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxHeight()
+            ) {
+                Slider(
+                    value = vm.volume.value.toFloat(),
+                    onValueChange = {
+                        vm.setVolume(it.toInt())
+                    },
+                    valueRange = 0f..100f,
+                    modifier = PointerModifier.width(250.dp)
+                )
+            }
+        }
     }
 }
