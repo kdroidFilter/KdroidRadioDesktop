@@ -26,13 +26,11 @@ import ui.components.KofiButton
 import ui.components.TopBarElements
 import ui.components.loadAppIcon
 import ui.dialogs.UpdaterDialog
-import ui.dialogs.VlcInstallerDialog
 import uk.co.caprica.vlcj.binding.support.runtime.RuntimeUtil
 import utils.Localization
 import utils.OsDetector
 import utils.SnackBarDisplayer
 import utils.getRessourcePath
-import utils.isVLCInstalled
 import utils.stringResource
 import viewmodel.MainViewModel
 import viewmodel.RadioViewModel
@@ -77,8 +75,8 @@ fun main() = application {
                 Surface(
                     Modifier.padding(paddingValues).padding(16.dp).fillMaxSize()
                 ) {
-                    VlcInstallerDialog()
-                    if (!isVLCInstalled()) return@Surface
+                   // VlcInstallerDialog()
+                   // if (!isVLCInstalled()) return@Surface
                     NavGraph(vm, navigator, RadioViewModel(vm, RadioRepository, preferenceManager) )
                     UpdaterDialog(vm)
                 }
