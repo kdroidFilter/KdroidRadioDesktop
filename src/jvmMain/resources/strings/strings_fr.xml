@@ -103,6 +103,8 @@
 
 
     <!-- Radio Stations -->
+    <string name="radio_beshiour_hay">Beshiour Hay</string>
+    <string name="radio_kol_hahalakha">Kol HaHalakha</string>
     <string name="radio_kol_play">Kol Play</string>
     <string name="radio_kol_barama">Kol Barama</string>
     <string name="radio_kol_hay">Kol Hay</string>

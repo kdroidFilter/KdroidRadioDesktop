@@ -9,9 +9,16 @@ object RadioRepository {
     fun getRadioItems(): List<RadioItem> {
         return listOf(
             RadioItem(
-                stringResource("radio_kol_play"),
-                "https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio",
-                "assets/radiosIcons/kolplay.png"
+                stringResource("radio_beshiour_hay"),
+                "https://media2.93fm.co.il/livetorani",
+                "assets/radiosIcons/beshiour_hay.jpeg",
+                RadioCategoryType.TORAH
+            ),
+            RadioItem(
+                stringResource("radio_kol_hahalakha"),
+                "https://broadcast.adpronet.com/radio/8050/radio.mp3",
+                "assets/radiosIcons/kol_hahalakha.png",
+                RadioCategoryType.TORAH
             ),
             RadioItem(
                 stringResource("radio_kol_barama"),
@@ -24,6 +31,11 @@ object RadioRepository {
                 "https://media2.93fm.co.il/live-new",
                 "assets/radiosIcons/kolhay0.jpg",
                 RadioCategoryType.NEWS
+            ),
+            RadioItem(
+                stringResource("radio_kol_play"),
+                "https://cdn.cybercdn.live/Kol_Barama/Music/icecast.audio",
+                "assets/radiosIcons/kolplay.png"
             ),
             RadioItem(
                 icon ="assets/radiosIcons/kolhay.png",
