@@ -104,7 +104,7 @@ object RadioRepository {
                 stations = listOf(
                     RadioSubItem(stringResource("radio_category_makelet_shira"), "https://music.shira24.com:5001/10"),
                     RadioSubItem("פריילך Freilach", "https://music.shira24.com:5001/2"),
-                    RadioSubItem("רוגע Relax", "https://music.shira24.com:5001/73"),
+                    RadioSubItem("רוגע Relax", "https://music.shira24.com:5001/7"),
                     RadioSubItem("שבת Shabbos", "https://music.shira24.com:5001/3"),
                     RadioSubItem("ווקאלי Vocal", "https://music.shira24.com:5001/8"),
 
