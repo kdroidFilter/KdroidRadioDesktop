@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.kdroidFilter"
-version = "0.1.7"
+version = "0.1.8"
 
 repositories {
     mavenCentral()
