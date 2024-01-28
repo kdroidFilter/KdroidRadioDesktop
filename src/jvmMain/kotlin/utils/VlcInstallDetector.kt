@@ -6,6 +6,16 @@ import java.io.InputStreamReader
 
 fun isVLCInstalled(): Boolean {
     if (OsDetector.isWindows()) return true
+    if (OsDetector.isMac()) {
+        val process = Runtime.getRuntime().exec("brew list --cask | grep vlc\n")
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        var line: String?
+        while (reader.readLine().also { line = it } != null) {
+            if (line!!.contains("vlc")) {
+                return true
+            }
+        }
+    }
     try {
         val process = Runtime.getRuntime().exec("which vlc")
         val reader = BufferedReader(InputStreamReader(process.inputStream))
