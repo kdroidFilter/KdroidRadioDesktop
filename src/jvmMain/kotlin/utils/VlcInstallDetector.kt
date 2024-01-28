@@ -8,7 +8,7 @@ fun isVLCInstalled(): Boolean {
     if (OsDetector.isWindows()) return true
     if (OsDetector.isMac()) {
         try {
-            val process = Runtime.getRuntime().exec("brew list --cask | grep vlc\n")
+            val process = Runtime.getRuntime().exec("brew list --cask | grep vlc")
             val reader = BufferedReader(InputStreamReader(process.inputStream))
             var line: String?
             while (reader.readLine().also { line = it } != null) {
