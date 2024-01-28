@@ -19,6 +19,7 @@ class RadioPlayerManager(
     // Liste des flux médias (URLs).
     private val mediaList = mutableListOf<String>()
 
+
     init {
          setupMediaPlayerEvents()
     }
@@ -49,6 +50,7 @@ class RadioPlayerManager(
                     _isPlaying.value = false
                 }
             })
+
     }
 
     fun play(streamUrl: String) {
@@ -82,8 +84,19 @@ class RadioPlayerManager(
         audioPlayerComponent.mediaPlayer().audio().setVolume(adjustedVolume)
     }
 
+    private val _isMuted = MutableStateFlow(audioPlayerComponent.mediaPlayer().audio().isMute)
+    val isMuted = _isMuted.asStateFlow()
+
+    fun toggleMute() {
+        val mediaPlayer = audioPlayerComponent.mediaPlayer()
+        mediaPlayer.audio().mute()
+        _isMuted.value = !mediaPlayer.audio().isMute
+    }
+
+
     fun addMedia(url: String) {
         mediaList.add(url)
     }
+
 
 }

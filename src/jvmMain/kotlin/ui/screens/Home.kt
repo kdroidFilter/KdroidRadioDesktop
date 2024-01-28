@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.filled.StopCircle
+import androidx.compose.material.icons.filled.VolumeOff
+import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -215,6 +217,14 @@ fun PlayerElement(mainViewModel: MainViewModel, vm: RadioViewModel) {
                     },
                     valueRange = 0f..100f,
                     modifier = PointerModifier.width(250.dp)
+                )
+                val isMute = vm.isMuted.collectAsState()
+                Icon(
+                    (if (isMute.value) Icons.Default.VolumeOff else Icons.Default.VolumeUp),
+                    "Mute",
+                    IconPointerModifier(mainViewModel).size(35.dp).clip(CircleShape).clickable {
+                        vm.toggleMute()
+                    }
                 )
             }
         }

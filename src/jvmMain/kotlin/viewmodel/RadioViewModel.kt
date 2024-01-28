@@ -56,7 +56,7 @@ class RadioViewModel(
 
     fun getRadioIcon() = _isSelected.value.icon
     fun hasSubItems() = _isSelected.value.stations.size > 1
-    fun getActualRadio() = _isSubItemSelected.value.name
+    fun getActualRadio() = _isSelected.value.stations.first().name
 
     private fun getActualIndex() = getRadioItems().indexOf(isSelected.value)
 
@@ -91,6 +91,11 @@ class RadioViewModel(
     fun setVolume(volume: Int) {
         _volume.value = volume
         radioPlayerManager.setVolume(volume)
+    }
+
+    val isMuted = radioPlayerManager.isMuted
+    fun toggleMute() {
+        radioPlayerManager.toggleMute()
     }
 
 
