@@ -77,7 +77,8 @@ fun main() = application {
                 ) {
                    // VlcInstallerDialog()
                    // if (!isVLCInstalled()) return@Surface
-                    NavGraph(vm, navigator, RadioViewModel(vm, RadioRepository, preferenceManager) )
+                    val radioViewModel = RadioViewModel(vm, RadioRepository, preferenceManager)
+                    NavGraph(vm, navigator, radioViewModel )
                     UpdaterDialog(vm)
                 }
             }

@@ -211,7 +211,7 @@ fun PlayerElement(mainViewModel: MainViewModel, vm: RadioViewModel) {
                 modifier = Modifier.fillMaxHeight()
             ) {
                 Slider(
-                    value = vm.volume.value.toFloat(),
+                    value = vm.volume.collectAsState().value.toFloat(),
                     onValueChange = {
                         vm.setVolume(it.toInt())
                     },

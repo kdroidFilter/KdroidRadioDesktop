@@ -7,6 +7,8 @@ import data.model.RadioItem
 import data.model.RadioSubItem
 import data.repository.RadioRepository
 import enums.RadioCategoryType
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import moe.tlaster.precompose.viewmodel.ViewModel
 
 class RadioViewModel(
@@ -24,33 +26,41 @@ class RadioViewModel(
     private var _isSubItemSelected = mutableStateOf(_isSelected.value.stations.first())
     var isSubItemSelected = _isSubItemSelected
 
-    private var _volume = mutableStateOf(50)
-    val volume = _volume
+    private var _volume = MutableStateFlow(50)
+    val volume = _volume.asStateFlow()
 
     fun getRadioItems(): List<RadioItem> {
-        return if (preferencesManager.showNewsStations()) radioRepository.getRadioItems() else {
-            radioRepository.getRadioItems().filter { it.categoryType != RadioCategoryType.NEWS }
+        synchronized(this) {
+            return if (preferencesManager.showNewsStations()) radioRepository.getRadioItems() else {
+                radioRepository.getRadioItems().filter { it.categoryType != RadioCategoryType.NEWS }
+            }
         }
     }
 
     fun getSubItems() = _isSelected.value.stations
 
     fun setSelected(item: RadioItem) {
-        _isSelected.value = item
-        setSubItemSelected(item.stations.first())
-        updateMediaList(item.stations)
+        synchronized(this) {
+            _isSelected.value = item
+            setSubItemSelected(item.stations.first())
+            updateMediaList(item.stations)
+        }
     }
 
     fun setSubItemSelected(item: RadioSubItem) {
-        _isSubItemSelected.value = item
-        radioPlayerManager.stop()
-        radioPlayerManager.play(item.streamUrl)
+        synchronized(this) {
+            _isSubItemSelected.value = item
+            radioPlayerManager.stop()
+            radioPlayerManager.play(item.streamUrl)
+        }
     }
 
     private fun updateMediaList(stations: List<RadioSubItem>) {
-        radioPlayerManager.clearMediaList()
-        stations.forEach { station ->
-            radioPlayerManager.addMedia(station.streamUrl)
+        synchronized(this) {
+            radioPlayerManager.clearMediaList()
+            stations.forEach { station ->
+                radioPlayerManager.addMedia(station.streamUrl)
+            }
         }
     }
 
@@ -79,18 +89,19 @@ class RadioViewModel(
     fun previous() {
         setSelected(previousStation)
     }
-
-
     val isPlaying = radioPlayerManager.isPlaying
 
-
     fun togglePlayStop() {
-        radioPlayerManager.togglePlayStop(isSubItemSelected.value.streamUrl)
+        synchronized(this) {
+            radioPlayerManager.togglePlayStop(isSubItemSelected.value.streamUrl)
+        }
     }
 
     fun setVolume(volume: Int) {
-        _volume.value = volume
-        radioPlayerManager.setVolume(volume)
+        synchronized(this) {
+            _volume.value = volume
+            radioPlayerManager.setVolume(volume)
+        }
     }
 
     val isMuted = radioPlayerManager.isMuted
@@ -98,8 +109,4 @@ class RadioViewModel(
         radioPlayerManager.toggleMute()
     }
 
-
-    init {
-        updateMediaList(getRadioItems().first().stations)
-    }
 }

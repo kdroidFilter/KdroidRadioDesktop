@@ -54,48 +54,60 @@ class RadioPlayerManager(
     }
 
     fun play(streamUrl: String) {
-        try {
-            audioPlayerComponent.mediaPlayer().media().play(streamUrl)
-            _isPlaying.value = true
-        } catch (e: Exception) {
-            println("Erreur lors de la lecture: ${e.localizedMessage}")
+        synchronized(this) {
+            try {
+                audioPlayerComponent.mediaPlayer().media().play(streamUrl)
+                _isPlaying.value = true
+            } catch (e: Exception) {
+                println("Erreur lors de la lecture: ${e.localizedMessage}")
+            }
         }
     }
 
     fun stop() {
-        try {
-            audioPlayerComponent.mediaPlayer().controls().stop()
-            _isPlaying.value = false
-        } catch (e: Exception) {
-            println("Erreur lors de l'arrêt: ${e.localizedMessage}")
+        synchronized(this) {
+            try {
+                audioPlayerComponent.mediaPlayer().controls().stop()
+                _isPlaying.value = false
+            } catch (e: Exception) {
+                println("Erreur lors de l'arrêt: ${e.localizedMessage}")
+            }
         }
     }
 
     fun togglePlayStop(streamUrl: String) {
-        if (_isPlaying.value) {
-            stop()
-        } else {
-            play(streamUrl)
+        synchronized(this) {
+            if (_isPlaying.value) {
+                stop()
+            } else {
+                play(streamUrl)
+            }
         }
     }
 
     fun setVolume(volume: Int) {
-        val adjustedVolume = volume.coerceIn(0, 100)
-        audioPlayerComponent.mediaPlayer().audio().setVolume(adjustedVolume)
+        synchronized(this) {
+            val adjustedVolume = volume.coerceIn(0, 100)
+            audioPlayerComponent.mediaPlayer().audio().setVolume(adjustedVolume)
+        }
     }
 
     private val _isMuted = MutableStateFlow(audioPlayerComponent.mediaPlayer().audio().isMute)
     val isMuted = _isMuted.asStateFlow()
 
     fun toggleMute() {
-        val mediaPlayer = audioPlayerComponent.mediaPlayer()
-        mediaPlayer.audio().mute()
-        _isMuted.value = !mediaPlayer.audio().isMute
+        synchronized(this) {
+            val mediaPlayer = audioPlayerComponent.mediaPlayer()
+            mediaPlayer.audio().mute()
+            _isMuted.value = !mediaPlayer.audio().isMute
+        }
     }
 
 
     fun addMedia(url: String) {
-        mediaList.add(url)
+        synchronized(this) {
+            mediaList.add(url)
+        }
     }
 
 
